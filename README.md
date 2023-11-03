@@ -2,7 +2,7 @@
 
 <p align='center'><img src='_out/sg3-aia.jpg' /></p>
 
-[Fourier]-based [StyleGAN3] by Nvidia, slightly adapted for practical use. 
+[Fourier]-based [StyleGAN3] by Nvidia, slightly adapted for practical use.  
 Tested on Python 3.8\~3.9 + PyTorch 1.10\~2.0, requires [FFMPEG] for sequence-to-video conversions. For more explicit details refer to the original implementation.  
 NB: If you're not familiar with StyleGAN use, you may want to check the previous [StyleGAN2-ada] repo first.  
 
@@ -14,13 +14,12 @@ NB: If you're not familiar with StyleGAN use, you may want to check the previous
 
 ## Training
 
-* Put your images in `data` as subfolder or zip archive. Ensure they all have the same color channels (monochrome, RGB or RGBA).  
+* Put your images in `data` as subfolder or zip archive. Ensure they all have the same color channels (monochrome, RGB or RGBA). 
 If needed, first crop square fragments from `source` video or directory with images (feasible method, if you work with patterns or shapes, rather than compostions):
 ```
  multicrop.bat source 512 256 
 ```
-This will cut every source image (or video frame) into 512x512px fragments, overlapped with 256px shift by X and Y. Result will be in directory `source-sub`, rename it as you wish. 
-If you edit the images yourself (e.g. for non-square aspect ratios), ensure their correct size. 
+This will cut every source image (or video frame) into 512x512px fragments, overlapped with 256px shift by X and Y. Result will be in directory `source-sub`, rename it as you wish. If you edit the images yourself, ensure their correct size. 
 
 * Train StyleGAN3 with rotational invariance on the prepared dataset `mydata.zip` (in the `data` subfolder) for 8kk iterations:
 ```
@@ -28,7 +27,7 @@ If you edit the images yourself (e.g. for non-square aspect ratios), ensure thei
 ```
 One can set `t` to train StyleGAN3 with translational invariance or `2` to train StyleGAN2, instead of `r`. 
 
-This will run training process, according to the settings in `src/train.py` (check and explore those!!). Results (models and samples) are saved under `train` directory, similar to original Nvidia approach. 
+This will run training process, according to the settings in `src/train.py` (check and explore those!!). Results (models and samples) are saved under the `train` directory, similar to original Nvidia approach. 
 
 Please note: we save both compact models (containing only Gs network for inference) as `<dataset>-...pkl` (e.g. `mydata-512-r-0360.pkl`), and full models (containing G/D/Gs networks for further training) as `snapshot-...pkl`. The naming is for convenience only.
 
@@ -75,7 +74,7 @@ This will produce a blended composition of 2 independent frames, animated for bo
 
 StyleGAN3: 
 Copyright © 2021, NVIDIA Corporation & affiliates. All rights reserved.  
-Made available under the [Nvidia Source Code License-NC]  
+Made available under the [Nvidia Source Code License]  
 
 [StyleGAN3]: <https://github.com/NVlabs/stylegan3>
 [Fourier]: <https://cdm.link/2022/02/fft-magic-explained-with-animations-and-smoothies-not-equations/>
